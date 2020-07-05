@@ -38,7 +38,7 @@ const ChartPage = () => {
             "xAxisName": "Local Time",
             "yAxisName": "USD",
             "numberPrefix": "$",
-            "refreshinterval": "3",
+            "refreshinterval": "2",
             "slantLabels": "1",
             "numdisplaysets": "10",
             "labeldisplay": "rotate",
@@ -72,8 +72,8 @@ const ChartPage = () => {
         const response = await axios.get('https://api.cryptonator.com/api/ticker/btc-usd');
         const value = response.data;
         const sourceData = dataSource;
-        sourceData.chart.yAxisMaxValue = parseFloat(value.ticker.price) + 5
-        sourceData.chart.yAxisMinValue = parseFloat(value.ticker.price) - 5;
+        sourceData.chart.yAxisMaxValue = parseInt(value.ticker.price) + 5
+        sourceData.chart.yAxisMinValue = parseInt(value.ticker.price) - 5;
         setShowChart(true); setDataSource(sourceData); setInitialVal(value.ticker.price);
         setStart(true);
 
@@ -89,7 +89,7 @@ const ChartPage = () => {
             chartRef = FusionCharts('liveBTCTicker');
             chartRef.feedData(`&label= ${xAxis} &value= ${yAxis}`);
 
-        }, 3000);
+        }, 2000);
     };
 
 
